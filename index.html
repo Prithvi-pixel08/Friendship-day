@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>For You 🌷</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0e1017;
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ---------- OPENING SCREEN ---------- */
+
+    #intro {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 25px;
+      transition: 0.8s ease;
+    }
+
+    #intro.hidden {
+      opacity: 0;
+      transform: scale(1.05);
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+    }
+
+    .intro-box {
+      max-width: 600px;
+    }
+
+    .small-title {
+      color: #ff82ad;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .intro-box h1 {
+      font-size: clamp(45px, 12vw, 80px);
+      line-height: 0.95;
+      margin-bottom: 20px;
+    }
+
+    .intro-box p {
+      color: #b9becb;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    #openButton {
+      border: none;
+      background: white;
+      color: #11131b;
+      padding: 14px 24px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    #openButton:hover {
+      transform: translateY(-2px);
+    }
+
+    /* ---------- MAIN PAGE ---------- */
+
+    #mainPage {
+      width: min(900px, 100%);
+      margin: auto;
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(25px);
+      transition: 1s ease;
+    }
+
+    #mainPage.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 55px 15px 30px;
+    }
+
+    .hero h2 {
+      font-size: clamp(40px, 10vw, 70px);
+      margin: 10px 0;
+    }
+
+    .hero p {
+      color: #b9becb;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ---------- MESSAGE ---------- */
+
+    .message-box {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 25px;
+      padding: 25px;
+      text-align: center;
+      line-height: 1.8;
+      font-size: 17px;
+      margin-bottom: 30px;
+      backdrop-filter: blur(12px);
+    }
+
+    /* ---------- PHOTO GALLERY ---------- */
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .photo {
+      min-height: 230px;
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+
+      opacity: 0;
+      transform: translateY(30px) scale(0.97);
+
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+    }
+
+    .photo.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .photo.main {
+      grid-column: 1 / -1;
+      min-height: 430px;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    .footer {
+      text-align: center;
+      color: #8f95a3;
+      padding: 35px 0 45px;
+      font-size: 14px;
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 650px) {
+
+      #mainPage {
+        padding: 15px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .photo.main {
+        min-height: 350px;
+      }
+
+      .photo {
+        min-height: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       OPENING SCREEN
+  ========================== -->
+
+  <section id="intro">
+
+    <div class="intro-box">
+
+      <div class="small-title">
+        A little surprise
+      </div>
+
+      <h1>
+        Hey, Velu.
+      </h1>
+
+      <p>
+        I made something small for Friendship Day.
+        Don't judge the amount of overthinking that went into it. 😂
+      </p>
+
+      <button id="openButton">
+        Open it →
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MAIN PAGE
+  ========================== -->
+
+  <main id="mainPage">
+
+    <section class="hero">
+
+      <div class="small-title">
+        Friendship Day
+      </div>
+
+      <h2>
+        Happy Friendship Day 🌷
+      </h2>
+
+      <p>
+        For one of the people who made this part of life
+        a lot more memorable.
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         MESSAGE
+    ========================== -->
+
+    <section class="message-box">
+
+      <p>
+        Happy Friendship Day, bacha 🌻
+        <br><br>
+
+        Honestly, I didn't expect one random friendship
+        from Class 10 to turn into this much talking.
+        You're genuinely one of my favourite people to annoy,
+        so unfortunately you're stuck with me now. 😂
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         PHOTO GALLERY
+    ========================== -->
+
+    <section class="gallery">
+
+      <!-- MAIN PHOTO -->
+      <div class="photo main">
+        <img
+          src="images/main.jpg"
+          alt="Main photo"
+        >
+      </div>
+
+
+      <!-- OTHER PHOTOS -->
+      <div class="photo">
+        <img
+          src="images/photo2.jpg"
+          alt="Photo 2"
+        >
+      </div>
+
+      <div class="photo">
+        <img
+          src="images/photo3.jpg"
+          alt="Photo 3"
+        >
+      </div>
+
+      <div class="photo">
+        <img
+          src="images/photo4.jpg"
+          alt="Photo 4"
+        >
+      </div>
+
+      <div class="photo">
+        <img
+          src="images/photo5.jpg"
+          alt="Photo 5"
+        >
+      </div>
+
+    </section>
+
+
+    <div class="footer">
+      Made with too much overthinking and good intentions. 😂
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    const intro = document.getElementById("intro");
+    const mainPage = document.getElementById("mainPage");
+    const openButton = document.getElementById("openButton");
+
+    const photos = document.querySelectorAll(".photo");
+
+
+    openButton.addEventListener("click", function () {
+
+      /* Hide opening screen */
+
+      intro.classList.add("hidden");
+
+
+      /* Show main page */
+
+      setTimeout(function () {
+
+        mainPage.classList.add("visible");
+
+      }, 250);
+
+
+      /* Reveal photos one by one */
+
+      photos.forEach(function(photo, index) {
+
+        setTimeout(function() {
+
+          photo.classList.add("show");
+
+        }, 700 + (index * 300));
+
+      });
+
+    });
+
+  </script>
+
+</body>
+        </html>
