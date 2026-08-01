@@ -12,9 +12,7 @@
       margin: 0;
       padding: 0;
     }
-<audio id="bgMusic" preload="auto">
-    <source src="music/jeene-laga-hoon.mp3" type="audio/mpeg">
-</audio>
+
     body {
       font-family: Arial, Helvetica, sans-serif;
       background: #0e1017;
@@ -22,6 +20,9 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+    <audio id="bgMusic" preload="auto">
+    <source src="music/jeene-laga-hoon.mp3" type="audio/mpeg">
+</audio>
 
     /* ---------- OPENING SCREEN ---------- */
 
@@ -349,9 +350,12 @@
 const music = document.getElementById("bgMusic");
 
 setTimeout(() => {
+
+    music.play();
+
     music.volume = 0.5;
-    music.play().catch(err => console.log(err));
-}, 1000);
+
+},1000);
       /* Hide opening screen */
 
       intro.classList.add("hidden");
