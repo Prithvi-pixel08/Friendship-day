@@ -1,390 +1,736 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>For You 🌷</title>
+<title>Happy Friendship Day 🌻</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0e1017;
-      color: white;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-    <audio id="bgMusic" preload="auto">
-    <source src="music/jeene-laga-hoon.mp3" type="audio/mpeg">
-</audio>
+<style>
 
-    /* ---------- OPENING SCREEN ---------- */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-    #intro {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 25px;
-      transition: 0.8s ease;
-    }
+html{
+scroll-behavior:smooth;
+}
 
-    #intro.hidden {
-      opacity: 0;
-      transform: scale(1.05);
-      pointer-events: none;
-      position: absolute;
-      inset: 0;
-    }
+body{
 
-    .intro-box {
-      max-width: 600px;
-    }
+font-family:'Poppins',sans-serif;
 
-    .small-title {
-      color: #ff82ad;
-      font-size: 13px;
-      font-weight: bold;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 15px;
-    }
+background:
+linear-gradient(180deg,#090b12,#10131d,#151b28);
 
-    .intro-box h1 {
-      font-size: clamp(45px, 12vw, 80px);
-      line-height: 0.95;
-      margin-bottom: 20px;
-    }
+color:white;
 
-    .intro-box p {
-      color: #b9becb;
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
+overflow-x:hidden;
 
-    #openButton {
-      border: none;
-      background: white;
-      color: #11131b;
-      padding: 14px 24px;
-      border-radius: 30px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
+}
 
-    #openButton:hover {
-      transform: translateY(-2px);
-    }
+/* ---------- INTRO ---------- */
 
-    /* ---------- MAIN PAGE ---------- */
+#intro{
 
-    #mainPage {
-      width: min(900px, 100%);
-      margin: auto;
-      padding: 20px;
-      opacity: 0;
-      transform: translateY(25px);
-      transition: 1s ease;
-    }
+height:100vh;
 
-    #mainPage.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+display:flex;
 
-    .hero {
-      text-align: center;
-      padding: 55px 15px 30px;
-    }
+align-items:center;
 
-    .hero h2 {
-      font-size: clamp(40px, 10vw, 70px);
-      margin: 10px 0;
-    }
+justify-content:center;
 
-    .hero p {
-      color: #b9becb;
-      font-size: 16px;
-      line-height: 1.6;
-    }
+text-align:center;
 
-    /* ---------- MESSAGE ---------- */
+padding:30px;
 
-    .message-box {
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 25px;
-      padding: 25px;
-      text-align: center;
-      line-height: 1.8;
-      font-size: 17px;
-      margin-bottom: 30px;
-      backdrop-filter: blur(12px);
-    }
+transition:1s;
 
-    /* ---------- PHOTO GALLERY ---------- */
+}
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
+#intro.hide{
 
-    .photo {
-      min-height: 230px;
-      border-radius: 22px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
+opacity:0;
 
-      opacity: 0;
-      transform: translateY(30px) scale(0.97);
+transform:scale(1.08);
 
-      transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
-    }
+pointer-events:none;
 
-    .photo.show {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
+position:absolute;
 
-    .photo.main {
-      grid-column: 1 / -1;
-      min-height: 430px;
-    }
+inset:0;
 
-    .photo img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-    }
+}
 
-    /* ---------- FOOTER ---------- */
+.introCard{
 
-    .footer {
-      text-align: center;
-      color: #8f95a3;
-      padding: 35px 0 45px;
-      font-size: 14px;
-    }
+max-width:700px;
 
-    /* ---------- MOBILE ---------- */
+animation:fadeIntro 1.5s ease;
 
-    @media (max-width: 650px) {
+}
 
-      #mainPage {
-        padding: 15px;
-      }
+@keyframes fadeIntro{
 
-      .gallery {
-        grid-template-columns: 1fr;
-      }
+from{
 
-      .photo.main {
-        min-height: 350px;
-      }
+opacity:0;
 
-      .photo {
-        min-height: 300px;
-      }
-    }
-  </style>
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.tag{
+
+letter-spacing:4px;
+
+text-transform:uppercase;
+
+font-size:13px;
+
+font-weight:600;
+
+color:#FFD54F;
+
+margin-bottom:20px;
+
+}
+
+.introCard h1{
+
+font-size:clamp(48px,10vw,90px);
+
+line-height:.95;
+
+margin-bottom:25px;
+
+}
+
+.introCard p{
+
+font-size:17px;
+
+line-height:1.8;
+
+color:#c8ced9;
+
+margin-bottom:35px;
+
+}
+
+#openBtn{
+
+background:#FFD54F;
+
+color:#111;
+
+border:none;
+
+padding:16px 34px;
+
+font-size:17px;
+
+font-weight:700;
+
+border-radius:999px;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:0 0 25px rgba(255,213,79,.3);
+
+}
+
+#openBtn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 0 40px rgba(255,213,79,.5);
+
+}
+
+/* ---------- MAIN ---------- */
+
+#main{
+
+width:min(920px,100%);
+
+margin:auto;
+
+padding:20px;
+
+opacity:0;
+
+transform:translateY(40px);
+
+transition:1s;
+
+display:none;
+
+}
+
+#main.show{
+
+display:block;
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+.hero{
+
+text-align:center;
+
+padding:60px 20px 35px;
+
+}
+
+.hero .small{
+
+color:#FFD54F;
+
+letter-spacing:3px;
+
+text-transform:uppercase;
+
+font-size:13px;
+
+margin-bottom:15px;
+
+font-weight:600;
+
+}
+
+.hero h2{
+
+font-size:clamp(42px,9vw,72px);
+
+margin-bottom:18px;
+
+}
+
+.hero p{
+
+color:#c9d0dc;
+
+line-height:1.8;
+
+font-size:16px;
+
+max-width:650px;
+
+margin:auto;
+
+}
+
+/* ---------- MESSAGE ---------- */
+
+.message{
+
+margin:40px 0;
+
+padding:30px;
+
+border-radius:28px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(14px);
+
+text-align:center;
+
+line-height:2;
+
+font-size:17px;
+
+}
+
+.highlight{
+
+color:#FFD54F;
+
+font-weight:600;
+
+}
+/* ---------- GALLERY ---------- */
+
+.gallery{
+
+display:flex;
+
+flex-direction:column;
+
+gap:22px;
+
+margin-bottom:45px;
+
+}
+
+.slide{
+
+position:relative;
+
+width:100%;
+
+height:520px;
+
+border-radius:28px;
+
+overflow:hidden;
+
+background:#1b1f2c;
+
+opacity:0;
+
+transform:translateY(40px);
+
+transition:1s ease;
+
+box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+}
+
+.slide.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+.slide img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+}
+
+.caption{
+
+position:absolute;
+
+bottom:0;
+
+left:0;
+
+right:0;
+
+padding:18px;
+
+background:linear-gradient(transparent,rgba(0,0,0,.75));
+
+font-size:18px;
+
+font-weight:600;
+
+color:white;
+
+}
+
+/* ---------- END CARD ---------- */
+
+.endCard{
+
+text-align:center;
+
+padding:80px 20px;
+
+opacity:0;
+
+transform:translateY(30px);
+
+transition:1s;
+
+}
+
+.endCard.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+.endCard h3{
+
+font-size:45px;
+
+margin-bottom:20px;
+
+}
+
+.endCard p{
+
+line-height:2;
+
+color:#cfd6e2;
+
+font-size:17px;
+
+max-width:700px;
+
+margin:auto;
+
+}
+
+.footer{
+
+margin-top:40px;
+
+font-size:14px;
+
+color:#8c93a0;
+
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:700px){
+
+.slide{
+
+height:380px;
+
+}
+
+.hero{
+
+padding-top:40px;
+
+}
+
+.message{
+
+font-size:16px;
+
+padding:22px;
+
+}
+
+.hero h2{
+
+font-size:52px;
+
+}
+
+.introCard h1{
+
+font-size:58px;
+
+}
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-  <!-- =========================
-       OPENING SCREEN
-  ========================== -->
+<audio id="introMusic">
 
-  <section id="intro">
+<source src="music/jeene-laga-hoon-v.mp3" type="audio/mpeg">
 
-    <div class="intro-box">
+</audio>
 
-      <div class="small-title">
-        A little surprise
-      </div>
+<audio id="mainMusic">
 
-      <h1>
-        Hey, Velu.
-      </h1>
+<source src="music/jeene-laga-hoon.mp3" type="audio/mpeg">
 
-      <p>
-        I made something small for Friendship Day.
-        Don't judge the amount of overthinking that went into it. 😂
-      </p>
+</audio>
 
-      <button id="openButton">
-        Open it →
-      </button>
+<section id="intro">
 
-    </div>
+<div class="introCard">
 
-  </section>
+<div class="tag">
 
+A SMALL SURPRISE
 
-  <!-- =========================
-       MAIN PAGE
-  ========================== -->
+</div>
 
-  <main id="mainPage">
+<h1>
 
-    <section class="hero">
+Hey Velu 🌻
 
-      <div class="small-title">
-        Friendship Day
-      </div>
+</h1>
 
-      <h2>
-        Happy Friendship Day 🌷
-      </h2>
+<p>
 
-      <p>
-        For one of the people who made this part of life
-        a lot more memorable.
-      </p>
+Happy Friendship Day.
 
-    </section>
+I wanted to make something instead of just sending a normal text.
 
+Hopefully you like it. 🌻
 
-    <!-- =========================
-         MESSAGE
-    ========================== -->
+</p>
 
-    <section class="message-box">
+<button id="openBtn">
 
-      <p>
-        Happy Friendship Day, bacha 🌻
-        <br><br>
+Open →
 
-        Honestly, I didn't expect one random friendship
-        from Class 10 to turn into this much talking.
-        You're genuinely one of my favourite people to annoy,
-        so unfortunately you're stuck with me now. 😂
-      </p>
+</button>
 
-    </section>
+</div>
 
+</section>
 
-    <!-- =========================
-         PHOTO GALLERY
-    ========================== -->
+<main id="main">
 
-    <section class="gallery">
+<section class="hero">
 
-      <!-- MAIN PHOTO -->
-      <div class="photo main">
-        <img
-          src="images/main.jpg"
-          alt="Main photo"
-        >
-      </div>
+<div class="small">
 
+Friendship Day
 
-      <!-- OTHER PHOTOS -->
-      <div class="photo">
-        <img
-          src="images/photo2.jpg"
-          alt="Photo 2"
-        >
-      </div>
+</div>
 
-      <div class="photo">
-        <img
-          src="images/photo3.jpg"
-          alt="Photo 3"
-        >
-      </div>
+<h2>
 
-      <div class="photo">
-        <img
-          src="images/photo4.jpg"
-          alt="Photo 4"
-        >
-      </div>
+Happy Friendship Day 🌻
 
-      <div class="photo">
-        <img
-          src="images/photo5.jpg"
-          alt="Photo 5"
-        >
-      </div>
+</h2>
 
-    </section>
+<p>
 
+Some people slowly become an important part of your life without even realizing it.
 
-    <div class="footer">
-      Made with too much overthinking and good intentions. 😂
-    </div>
+You're one of them.
 
-  </main>
+</p>
 
+</section>
 
-  <!-- =========================
-       JAVASCRIPT
-  ========================== -->
+<section class="message">
 
-  <script>
+Happy Friendship Day bacha 🌻
 
-    const intro = document.getElementById("intro");
-    const mainPage = document.getElementById("mainPage");
-    const openButton = document.getElementById("openButton");
+<br><br>
 
-    const photos = document.querySelectorAll(".photo");
+I don't really know when this friendship became this important.
 
+I just know that I'm genuinely grateful it happened.
 
-    openButton.addEventListener("click", function () {
-const music = document.getElementById("bgMusic");
+<br><br>
 
-setTimeout(() => {
+Thank you for all the random conversations,
 
-    music.play();
+the jokes,
 
-    music.volume = 0.5;
+the arguments,
 
-},1000);
-      /* Hide opening screen */
+and for simply being yourself.
 
-      intro.classList.add("hidden");
+<br><br>
 
+<span class="highlight">
 
-      /* Show main page */
+Stay exactly the way you are.
 
-      setTimeout(function () {
+</span>
 
-        mainPage.classList.add("visible");
+🌻
 
-      }, 250);
+</section>
 
+<section class="gallery">
 
-      /* Reveal photos one by one */
+<div class="slide">
 
-      photos.forEach(function(photo, index) {
+<img src="images/main.jpg">
 
-        setTimeout(function() {
+<div class="caption">
 
-          photo.classList.add("show");
+The beginning 🌻
 
-        }, 700 + (index * 300));
+</div>
 
-      });
+</div>
 
-    });
+<div class="slide">
 
-  </script>
+<img src="images/photo2.jpg">
+
+<div class="caption">
+
+One of my favourite pictures.
+
+</div>
+
+</div>
+
+<div class="slide">
+
+<img src="images/photo3.jpg">
+
+<div class="caption">
+
+A little memory.
+
+</div>
+
+</div>
+
+<div class="slide">
+
+<img src="images/photo4.jpg">
+
+<div class="caption">
+
+Another one 🌻
+
+</div>
+
+</div>
+
+<div class="slide">
+
+<img src="images/photo5.jpg">
+
+<div class="caption">
+
+Keep smiling.
+
+</div>
+
+</div>
+
+</section>
+
+<div class="endCard" id="endCard">
+
+<h3>
+
+🌻
+
+</h3>
+
+<p>
+Thank you for being one of the best parts of this year.
+
+No matter where life takes us,
+
+I hope this friendship stays exactly the same.
+
+🌻
+
+</p>
+
+<div class="footer">
+
+Made with overthinking,
+
+late-night coding,
+
+and genuine friendship. 🌻
+
+</div>
+
+</div>
+
+</main>
+
+<script>
+
+const intro = document.getElementById("intro");
+const main = document.getElementById("main");
+
+const openBtn = document.getElementById("openBtn");
+
+const introMusic = document.getElementById("introMusic");
+const mainMusic = document.getElementById("mainMusic");
+
+const slides = document.querySelectorAll(".slide");
+
+const endCard = document.getElementById("endCard");
+
+openBtn.addEventListener("click",()=>{
+
+intro.classList.add("hide");
+
+setTimeout(()=>{
+
+main.classList.add("show");
+
+},500);
+
+/* ---------- MUSIC ---------- */
+
+introMusic.volume=.55;
+
+mainMusic.volume=.55;
+
+introMusic.play().catch(()=>{});
+
+introMusic.onended=()=>{
+
+mainMusic.play().catch(()=>{});
+
+};
+
+/* ---------- SLIDESHOW ---------- */
+
+let delay=1200;
+
+slides.forEach((slide,index)=>{
+
+setTimeout(()=>{
+
+slide.classList.add("show");
+
+slide.scrollIntoView({
+
+behavior:"smooth",
+
+block:"center"
+
+});
+
+},delay);
+
+delay+=4500;
+
+});
+
+setTimeout(()=>{
+
+endCard.classList.add("show");
+
+endCard.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+},delay+500);
+
+});
+
+</script>
 
 </body>
-        </html>
+
+</html>
