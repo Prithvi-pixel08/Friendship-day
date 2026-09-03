@@ -9,7 +9,91 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* ---------- PASSWORD SCREEN ---------- */
 
+#passwordScreen{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    linear-gradient(180deg,#090b12,#10131d,#151b28);
+
+    text-align:center;
+    padding:30px;
+}
+
+.passwordCard{
+    width:min(420px,100%);
+    padding:35px 28px;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(14px);
+}
+
+.passwordCard h2{
+    font-size:32px;
+    margin-bottom:12px;
+}
+
+.passwordCard p{
+    color:#c8ced9;
+    margin-bottom:25px;
+    line-height:1.6;
+}
+
+#passwordInput{
+    width:100%;
+    padding:14px 18px;
+
+    border:none;
+    outline:none;
+
+    border-radius:999px;
+
+    font-size:16px;
+
+    margin-bottom:12px;
+}
+
+#passwordBtn{
+    width:100%;
+
+    background:#FFD54F;
+    color:#111;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:999px;
+
+    font-size:16px;
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+#passwordError{
+    color:#ff8a8a;
+    font-size:14px;
+    margin-top:12px;
+    min-height:20px;
+}
+
+#passwordScreen.hidePassword{
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .6s ease;
+}
 *{
 margin:0;
 padding:0;
@@ -450,6 +534,34 @@ font-size:58px;
 
 <body>
 
+<div id="passwordScreen">
+
+    <div class="passwordCard">
+
+        <h2>Hey 👀🌻</h2>
+
+        <p>
+            This little corner isn't for everyone.
+            <br>
+            Enter the password to continue.
+        </p>
+
+        <input
+            type="password"
+            id="passwordInput"
+            placeholder="Password"
+        >
+
+        <button id="passwordBtn">
+            Enter →
+        </button>
+
+        <div id="passwordError"></div>
+
+    </div>
+
+</div>
+
 <audio id="introMusic">
 
 <source src="music/jeene-laga-hoon.mp3" type="audio/mpeg">
@@ -654,6 +766,50 @@ and genuine friendship. 🌻
 </main>
 
 <script>
+
+/* ---------- PASSWORD ---------- */
+
+const correctPassword = "170825"; // CHANGE THIS
+
+const passwordScreen = document.getElementById("passwordScreen");
+const passwordInput = document.getElementById("passwordInput");
+const passwordBtn = document.getElementById("passwordBtn");
+const passwordError = document.getElementById("passwordError");
+
+function checkPassword(){
+
+    if(passwordInput.value === correctPassword){
+
+        passwordScreen.classList.add("hidePassword");
+
+        setTimeout(()=>{
+            passwordScreen.style.display = "none";
+        },600);
+
+    }else{
+
+        passwordError.textContent = "Wrong password 👀 Try again.";
+
+        passwordInput.value = "";
+
+    }
+
+}
+
+passwordBtn.addEventListener("click",checkPassword);
+
+passwordInput.addEventListener("keydown",(event)=>{
+
+    if(event.key === "Enter"){
+        checkPassword();
+    }
+
+});
+
+
+/* ---------- YOUR EXISTING CODE ---------- */
+
+const intro = document.getElementById("intro");
 
 const intro = document.getElementById("intro");
 const main = document.getElementById("main");
