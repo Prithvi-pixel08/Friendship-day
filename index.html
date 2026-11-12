@@ -530,6 +530,7 @@ font-size:58px;
 
 </style>
 
+  <link rel="stylesheet" href="special-letter/letter.css">
 </head>
 
 <body>
@@ -761,9 +762,20 @@ and genuine friendship. 🌻
 
 </div>
 
+<button id="specialLetterBtn" class="specialLetterBtn" type="button">One last little thing →</button>
+
 </div>
 
 </main>
+
+<div id="specialLetterExperience" aria-hidden="true">
+  <video id="letterVideo" preload="none" playsinline webkit-playsinline aria-label="The animated letter and rose">
+    <source src="special-letter/letter.mp4" type="video/mp4">
+  </video>
+  <div id="letterFinalNote" aria-live="polite">A little something, just for you. 🌻</div>
+  <button id="letterCloseBtn" type="button" aria-label="Close the letter animation">×</button>
+</div>
+<script src="special-letter/letter.js" defer></script>
 
 <script>
 
